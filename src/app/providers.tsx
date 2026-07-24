@@ -85,7 +85,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   // Load from sessionStorage on mount
   useEffect(() => {
     try {
-      const storedKey = window.sessionStorage.getItem('qf_grok_api_key');
+      const storedKey = window.sessionStorage.getItem('qf_groq_api_key');
       if (storedKey) {
         setApiKeyState(storedKey);
       }
@@ -100,9 +100,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
     setApiKeyState(key);
     try {
       if (key) {
-        window.sessionStorage.setItem('qf_grok_api_key', key);
+        window.sessionStorage.setItem('qf_groq_api_key', key);
       } else {
-        window.sessionStorage.removeItem('qf_grok_api_key');
+        window.sessionStorage.removeItem('qf_groq_api_key');
       }
     } catch (e) {
       console.error('Error writing API Key to session storage', e);

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "assessment platform",
     "quiz maker",
     "MCQ generator",
-    "Grok AI",
+    "Groq AI",
     "educational technology",
     "SDG 4",
     "Bloom taxonomy",

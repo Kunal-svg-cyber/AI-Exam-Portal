@@ -188,7 +188,7 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-sm font-bold text-zinc-200 uppercase tracking-wider mb-2">AI Question Generation</h3>
                   <p className="text-xs text-zinc-400 leading-relaxed">
-                    Harness xAI Grok to instantly generate diverse question formats tailored to your exact topics and syllabi.
+                    Harness Groq to instantly generate diverse question formats tailored to your exact topics and syllabi.
                   </p>
                 </div>
               </GlassCard>

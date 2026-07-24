@@ -1,0 +1,19 @@
+{
+  "name": "QuestionForge AI",
+  "short_name": "QuestionForge",
+  "description": "AI-Powered Exam & Assessment Generator for Educators",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090B",
+  "theme_color": "#3B82F6",
+  "orientation": "any",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

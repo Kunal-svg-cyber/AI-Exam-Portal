@@ -8,6 +8,7 @@ import { History, ArrowLeft, Eye, Trash2, Calendar, Clock, Award, Sparkles, Star
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Assessment, AssessmentResult } from '@/lib/types';
+import { GradedAssessmentResult } from '@/lib/evaluation-engine';
 
 interface SavedOutcome {
   id: string;
@@ -22,7 +23,7 @@ interface SavedOutcome {
   timestamp: number;
   assessment: Assessment;
   userAnswers: Record<string, string>;
-  result: AssessmentResult;
+  result: GradedAssessmentResult;
 }
 
 export function SessionResultsPage() {

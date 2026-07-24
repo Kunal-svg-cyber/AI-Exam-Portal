@@ -5,7 +5,7 @@ import { useAssessment } from '@/app/providers';
 import { Button } from '@/components/ui/button';
 import { QuestionRenderer } from '@/components/features/question-renderer';
 import { GlassCard } from '@/components/shared/glass-card';
-import { ChevronLeft, ChevronRight, CheckSquare, Clock, BookOpen, GraduationCap, CheckCircle2, Bookmark, HelpCircle, Keyboard } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckSquare, Clock, BookOpen, GraduationCap, CheckCircle2, Bookmark, HelpCircle, Keyboard, Brain } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AssessmentResult, QuestionResult } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -138,6 +138,10 @@ export function AssessmentViewer() {
   };
 
   function handleSubmit() {
+    if (!assessment) {
+      setIsSubmitting(false);
+      return;
+    }
     setIsSubmitting(true);
     
     // Simulate assessment grading schema validation loader

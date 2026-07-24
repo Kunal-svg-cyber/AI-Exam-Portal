@@ -8,6 +8,7 @@ import { QuestionRenderer } from '@/components/features/question-renderer';
 import { PdfExportButton } from './pdf-export-button';
 import { RotateCcw, BookOpen, Clock, Award, CheckCircle2, XCircle, BarChart3, AlertCircle, Sparkles, Star, Brain, CheckSquare, Copy, FileJson, Printer, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 export function ResultsDashboard() {
   const { assessment, result, resetAssessment, showToast } = useAssessment();
@@ -136,7 +137,7 @@ export function ResultsDashboard() {
       return {
         ...qRes,
         bloomLevel: original?.bloomLevel || 'Understanding',
-        difficulty: original?.difficulty || assessment.difficulty,
+        difficulty: assessment.difficulty,
       };
     });
 
@@ -657,7 +658,7 @@ export function ResultsDashboard() {
         <div className="space-y-6">
           {result.results.map((qRes, index) => {
             const originalQuestion = assessment.questions.find(q => q.id === qRes.questionId);
-            const difficulty = originalQuestion?.difficulty || assessment.difficulty;
+            const difficulty = assessment.difficulty;
             const bloomLevel = originalQuestion?.bloomLevel || "Understanding";
 
             // Determine status color weights

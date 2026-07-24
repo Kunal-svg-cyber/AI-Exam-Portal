@@ -19,8 +19,8 @@ export function PdfExportButton({ assessment, result }: PdfExportButtonProps) {
   const [isExportingReport, setIsExportingReport] = useState(false);
 
   // Helper utility for string formatting inside PDF
-  const cleanStr = (str: string) => {
-    return str.replace(/[^\x00-\x7F]/g, ""); // strip non-ascii characters to avoid jsPDF encoding errors
+  const cleanStr = (str?: string) => {
+    return (str ?? '').replace(/[^\x00-\x7F]/g, ""); // strip non-ascii characters to avoid jsPDF encoding errors
   };
 
   const generatePDF = async (includeAnswers: boolean) => {
@@ -90,7 +90,7 @@ export function PdfExportButton({ assessment, result }: PdfExportButtonProps) {
       doc.setTextColor(80, 80, 80);
       
       const timeAllowed = assessment.questions.length * 2;
-      doc.text(`SUBJECT: ${cleanStr(assessment.subject.toUpperCase())}`, margin, yPosition);
+      doc.text(`SUBJECT: ${cleanStr(assessment.subject?.toUpperCase())}`, margin, yPosition);
       doc.text(`TIME ALLOWED: ${timeAllowed} MINUTES`, pageWidth - margin, yPosition, { align: 'right' });
       yPosition += 5;
       doc.text(`TOPIC: ${cleanStr(assessment.topic.toUpperCase())}`, margin, yPosition);
@@ -247,7 +247,7 @@ export function PdfExportButton({ assessment, result }: PdfExportButtonProps) {
       }
 
       // --- PAGE COUNT FOOTERS ---
-      const pageCount = doc.internal.getNumberOfPages();
+      const pageCount = doc.getNumberOfPages();
       for (let i = 1; i <= pageCount; i++) {
         doc.setPage(i);
         doc.setDrawColor(220, 220, 220);
@@ -326,7 +326,7 @@ export function PdfExportButton({ assessment, result }: PdfExportButtonProps) {
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(9);
       doc.setTextColor(80, 80, 80);
-      doc.text(`SUBJECT: ${cleanStr(assessment.subject.toUpperCase())}`, margin, yPosition);
+      doc.text(`SUBJECT: ${cleanStr(assessment.subject?.toUpperCase())}`, margin, yPosition);
       doc.text(`DIFFICULTY: ${cleanStr(assessment.difficulty.toUpperCase())}`, pageWidth - margin, yPosition, { align: 'right' });
       yPosition += 5;
       doc.text(`TOPIC: ${cleanStr(assessment.topic.toUpperCase())}`, margin, yPosition);
@@ -385,7 +385,7 @@ export function PdfExportButton({ assessment, result }: PdfExportButtonProps) {
         return {
           ...qRes,
           bloomLevel: original?.bloomLevel || 'Understanding',
-          difficulty: original?.difficulty || assessment.difficulty,
+          difficulty: assessment.difficulty,
         };
       });
 
@@ -474,7 +474,7 @@ export function PdfExportButton({ assessment, result }: PdfExportButtonProps) {
       result.results.forEach((qRes, idx) => {
         const qNum = `${idx + 1}.`;
         const original = assessment.questions.find((q) => q.id === qRes.questionId);
-        const difficulty = original?.difficulty || assessment.difficulty;
+        const difficulty = assessment.difficulty;
         const bloom = original?.bloomLevel || 'Understanding';
 
         doc.setFont('helvetica', 'bold');
@@ -515,7 +515,7 @@ export function PdfExportButton({ assessment, result }: PdfExportButtonProps) {
         yPosition += (eLines.length * 4.5) + 8;
       });
 
-      const pageCount = doc.internal.getNumberOfPages();
+      const pageCount = doc.getNumberOfPages();
       for (let i = 1; i <= pageCount; i++) {
         doc.setPage(i);
         doc.setDrawColor(220, 220, 220);

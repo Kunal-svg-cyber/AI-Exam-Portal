@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   interactive?: boolean;
-  glowColor?: 'blue' | 'purple' | 'cyan' | 'none';
+  glowColor?: 'blue' | 'purple' | 'cyan' | 'rose' | 'emerald' | 'none';
 }
 
 export function GlassCard({
@@ -21,10 +21,10 @@ export function GlassCard({
     blue: 'shadow-glow-blue hover:shadow-blue-500/20',
     purple: 'shadow-glow-purple hover:shadow-purple-500/20',
     cyan: 'shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-cyan-500/20',
+    rose: 'shadow-[0_0_15px_rgba(244,63,94,0.25)] hover:shadow-rose-500/20',
+    emerald: 'shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:shadow-emerald-500/20',
     none: '',
   };
-
-  const Component = interactive ? motion.div : 'div';
 
   const animationProps = interactive
     ? {
@@ -34,7 +34,7 @@ export function GlassCard({
     : {};
 
   return (
-    <Component
+    <motion.div
       {...animationProps}
       className={cn(
         'rounded-2xl p-6 transition-all duration-300 ease-out-expo',
@@ -42,9 +42,9 @@ export function GlassCard({
         glowColor !== 'none' && glowClasses[glowColor],
         className
       )}
-      {...props}
+      {...(props as React.ComponentProps<typeof motion.div>)}
     >
       {children}
-    </Component>
+    </motion.div>
   );
 }

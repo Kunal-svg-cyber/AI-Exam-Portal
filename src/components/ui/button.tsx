@@ -7,7 +7,7 @@ import { Loader2 } from 'lucide-react';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'icon';
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -30,6 +30,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       sm: 'h-9 px-4 text-xs',
       md: 'h-11 px-6 text-sm',
       lg: 'h-13 px-8 text-base rounded-2xl',
+      icon: 'h-10 w-10 p-0',
     };
 
     return (
@@ -40,7 +41,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
         className={cn(baseStyles, variants[variant], sizes[size], className)}
         disabled={disabled || isLoading}
-        {...props}
+        {...(props as React.ComponentProps<typeof motion.button>)}
       >
         {isLoading && <Loader2 className="h-4 w-4 animate-spin text-current" />}
         {!isLoading && leftIcon && <span className="shrink-0">{leftIcon}</span>}

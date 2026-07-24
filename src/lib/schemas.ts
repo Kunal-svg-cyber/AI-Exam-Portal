@@ -4,8 +4,8 @@ export const apiKeySchema = z.object({
   apiKey: z
     .string()
     .min(1, "API Key is required")
-    .regex(/^xai-[a-zA-Z0-9_-]+$/, {
-      message: "Invalid key format. Grok API keys typically start with 'xai-' followed by alphanumeric characters, hyphens, or underscores.",
+    .regex(/^gsk_[a-zA-Z0-9]+$/, {
+      message: "Invalid key format. Groq API keys typically start with 'gsk_' followed by alphanumeric characters.",
     }),
 });
 

@@ -5,11 +5,11 @@ export const maxDuration = 60; // Max execution duration for Vercel Serverless
 
 export async function POST(req: NextRequest) {
   try {
-    // 1. Get the Grok API Key from Authorization Header
+    // 1. Get the Groq API Key from Authorization Header
     const authHeader = req.headers.get("Authorization");
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return NextResponse.json(
-        { error: "Unauthorized: Missing or invalid Authorization header. Please connect your Grok API key." },
+        { error: "Unauthorized: Missing or invalid Authorization header. Please connect your Groq API key." },
         { status: 401 }
       );
     }
@@ -33,8 +33,8 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     console.error("Error generating assessment:", error);
     
-    // Check if it's an API error mapped by our error handler (usually holds 'Grok API Error' in text)
-    const isApiError = error.message && error.message.includes("Grok API Error");
+    // Check if it's an API error mapped by our error handler (usually holds 'Groq API Error' in text)
+    const isApiError = error.message && error.message.includes("Groq API Error");
     const status = isApiError ? 502 : 500;
     
     return NextResponse.json(

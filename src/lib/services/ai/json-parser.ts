@@ -1,6 +1,6 @@
 export class JsonParser {
   /**
-   * Cleanses raw text response from Grok and parses it into a JSON object.
+   * Cleanses raw text response from Groq and parses it into a JSON object.
    * If parsing fails, attempts automatic JSON recovery.
    */
   static parseCleanedJson<T = any>(rawText: string): T {
@@ -19,7 +19,7 @@ export class JsonParser {
         return JSON.parse(recoveredText) as T;
       } catch (recoveryError: any) {
         throw new Error(
-          `Malformed JSON Error: The response returned by Grok was malformed and could not be recovered automatically. Details: ${recoveryError.message || ""}`
+          `Malformed JSON Error: The response returned by Groq was malformed and could not be recovered automatically. Details: ${recoveryError.message || ""}`
         );
       }
     }

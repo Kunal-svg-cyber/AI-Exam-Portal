@@ -25,7 +25,7 @@ export class ErrorHandler {
       }
 
       // If we still don't have a message, surface the raw body itself (truncated)
-      // so the actual cause from xAI is visible instead of a generic status text.
+      // so the actual cause from Groq is visible instead of a generic status text.
       if (!detailMessage) {
         detailMessage = rawText.slice(0, 300);
       }
@@ -35,13 +35,13 @@ export class ErrorHandler {
       detailMessage = response.statusText || "";
     }
 
-    const prefix = `Grok API Error (HTTP ${response.status})`;
+    const prefix = `Groq API Error (HTTP ${response.status})`;
 
     switch (response.status) {
       case 401:
-        throw new Error(`${prefix}: Unauthorized. Please check that your Grok API key is correct and valid.`);
+        throw new Error(`${prefix}: Unauthorized. Please check that your Groq API key is correct and valid.`);
       case 402:
-        throw new Error(`${prefix}: Payment Required. Please review billing status on your xAI developer console.`);
+        throw new Error(`${prefix}: Payment Required. Please review billing status on your Groq console (console.groq.com).`);
       case 404:
         throw new Error(`${prefix}: Not Found. ${detailMessage || "The requested model or endpoint may not exist."}`);
       case 429:
@@ -49,7 +49,7 @@ export class ErrorHandler {
       case 500:
       case 502:
       case 503:
-        throw new Error(`${prefix}: xAI Server Error. The service is currently experiencing issues. Please try again later.`);
+        throw new Error(`${prefix}: Groq Server Error. The service is currently experiencing issues. Please try again later.`);
       default:
         throw new Error(`${prefix}: ${detailMessage || "An unexpected error occurred."}`);
     }

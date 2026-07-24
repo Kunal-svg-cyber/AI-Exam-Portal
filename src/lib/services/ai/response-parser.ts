@@ -4,7 +4,7 @@ export class ResponseParser {
     const content = data.choices?.[0]?.message?.content;
     
     if (!content) {
-      throw new Error("Grok API returned an empty completion response.");
+      throw new Error("Groq API returned an empty completion response.");
     }
     
     return content;

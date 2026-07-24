@@ -9,7 +9,7 @@ import { Validator } from "./validator";
 
 export class AiService {
   /**
-   * Generates a high-quality educational assessment from Grok AI.
+   * Generates a high-quality educational assessment from Groq AI.
    * Wires prompt builders, clients, parsers, and validators.
    */
   static async generateAssessment(
@@ -23,7 +23,7 @@ export class AiService {
 
     // 2. Call API Client
     const response = await ApiClient.postChatCompletion(apiKey, {
-      model: "grok-4.5",
+      model: "openai/gpt-oss-120b",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },

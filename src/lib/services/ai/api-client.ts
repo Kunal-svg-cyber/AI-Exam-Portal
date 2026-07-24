@@ -7,7 +7,7 @@ export interface ChatCompletionRequest {
 
 export class ApiClient {
   /**
-   * Posts chat completion request to Grok API with connection timeout and retry logic.
+   * Posts chat completion request to Groq API with connection timeout and retry logic.
    * Leverages AbortController and exponential backoff.
    */
   static async postChatCompletion(
@@ -25,7 +25,7 @@ export class ApiClient {
       const timeoutId = setTimeout(() => controller.abort(), 30000);
 
       try {
-        const response = await fetch("https://api.x.ai/v1/chat/completions", {
+        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -41,7 +41,7 @@ export class ApiClient {
         const isTransient = response.status >= 500 && response.status <= 504;
         
         if (isTransient && attempt < maxRetries) {
-          console.warn(`[Grok API Client] Transient status ${response.status} detected on attempt ${attempt}. Retrying in ${delay}ms...`);
+          console.warn(`[Groq API Client] Transient status ${response.status} detected on attempt ${attempt}. Retrying in ${delay}ms...`);
           await new Promise((resolve) => setTimeout(resolve, delay));
           delay *= 2; // Exponential backoff
           continue;
@@ -57,7 +57,7 @@ export class ApiClient {
 
         if ((isAbortError || isNetworkError) && attempt < maxRetries) {
           const reason = isAbortError ? "Timeout of 30s exceeded" : "Network error";
-          console.warn(`[Grok API Client] ${reason} on attempt ${attempt}. Retrying in ${delay}ms...`);
+          console.warn(`[Groq API Client] ${reason} on attempt ${attempt}. Retrying in ${delay}ms...`);
           await new Promise((resolve) => setTimeout(resolve, delay));
           delay *= 2; // Exponential backoff
           continue;
@@ -72,13 +72,13 @@ export class ApiClient {
     if (lastError) {
       const isAbort = lastError.name === 'AbortError';
       const msg = isAbort 
-        ? "Connection Timeout: The request to Grok took longer than 30 seconds to complete." 
-        : `Network Error: ${lastError.message || "Failed to communicate with Grok server."}`;
+        ? "Connection Timeout: The request to Groq took longer than 30 seconds to complete." 
+        : `Network Error: ${lastError.message || "Failed to communicate with Groq server."}`;
       
       // Ensure the error message NEVER contains the raw API Key
       throw new Error(msg.replace(apiKey, "REDACTED_API_KEY"));
     }
 
-    throw new Error("Grok API Client: Failed to generate response after maximum retries.");
+    throw new Error("Groq API Client: Failed to generate response after maximum retries.");
   }
 }

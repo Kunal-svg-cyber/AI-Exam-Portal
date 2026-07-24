@@ -2,7 +2,7 @@ import { GeneratorInput } from "@/lib/schemas";
 
 export class PromptBuilder {
   /**
-   * Generates the system prompt instructing Grok on persona, format constraints, and pedagogy.
+   * Generates the system prompt instructing Groq on persona, format constraints, and pedagogy.
    */
   static buildSystemPrompt(language: string, bloomTaxonomy: string): string {
     return [

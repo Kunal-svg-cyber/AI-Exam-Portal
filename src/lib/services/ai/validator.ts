@@ -3,7 +3,7 @@ import { GeneratorInput } from "@/lib/schemas";
 
 export class Validator {
   /**
-   * Validates the parsed Grok JSON and normalizes it to fit our internal types.
+   * Validates the parsed Groq JSON and normalizes it to fit our internal types.
    * Performs automatic recovery for missing fields, incorrect indices, and duplicate IDs.
    */
   static validateAndNormalize(

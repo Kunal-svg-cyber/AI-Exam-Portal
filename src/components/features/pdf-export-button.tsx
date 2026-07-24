@@ -363,7 +363,7 @@ export function PdfExportButton({ assessment, result }: PdfExportButtonProps) {
       doc.text(`${compRate}%`, margin + 78, yPosition + 15);
 
       const getRank = (p: number) => {
-        if (p >= 90) return "Grok Master";
+        if (p >= 90) return "Groq Master";
         if (p >= 70) return "Proficient Expert";
         if (p >= 50) return "Competent Analyst";
         return "Apprentice Scholar";

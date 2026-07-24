@@ -359,7 +359,7 @@ export function ResultsDashboard() {
               {/* Dynamic Badge Render */}
               {(() => {
                 const getBadge = (p: number) => {
-                  if (p >= 90) return { title: "Grok Master", desc: "Superb mastery of cognitive concepts.", color: "text-purple", icon: Sparkles };
+                  if (p >= 90) return { title: "Groq Master", desc: "Superb mastery of cognitive concepts.", color: "text-purple", icon: Sparkles };
                   if (p >= 70) return { title: "Proficient Expert", desc: "Strong outcome alignment and logic.", color: "text-emerald-400", icon: Award };
                   if (p >= 50) return { title: "Competent Analyst", desc: "Satisfactory performance on key items.", color: "text-amber-400", icon: Star };
                   return { title: "Apprentice Scholar", desc: "Requires conceptual outcome reviews.", color: "text-rose-400", icon: AlertCircle };

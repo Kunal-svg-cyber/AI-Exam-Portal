@@ -92,7 +92,7 @@ export function ApiKeyModal() {
               <ApiStatus state={isKeyConnected ? 'connected' : 'not-connected'} />
             </div>
 
-            {/* Provider (Locked to Grok) */}
+            {/* Provider (Locked to Groq) */}
             <div className="w-full">
               <label className="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">
                 AI Provider
@@ -100,7 +100,7 @@ export function ApiKeyModal() {
               <div className="flex items-center justify-between w-full rounded-xl bg-zinc-900 border border-zinc-850 px-4 py-3 text-sm text-zinc-200">
                 <div className="flex items-center gap-2">
                   <Cpu className="h-4 w-4 text-primary animate-pulse" />
-                  <span className="font-semibold">Grok (xAI)</span>
+                  <span className="font-semibold">Groq</span>
                 </div>
                 <span className="text-[10px] text-zinc-500 font-extrabold tracking-wider uppercase border border-zinc-800 px-2 py-0.5 rounded-md bg-zinc-950">Active</span>
               </div>
@@ -110,7 +110,7 @@ export function ApiKeyModal() {
             <div className="relative">
               <Input
                 type={showKey ? 'text' : 'password'}
-                placeholder="xai-..."
+                placeholder="gsk_..."
                 label="API Key"
                 error={errors.apiKey?.message}
                 {...register('apiKey')}

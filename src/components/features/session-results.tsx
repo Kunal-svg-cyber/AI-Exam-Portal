@@ -72,7 +72,7 @@ export function SessionResultsPage() {
   };
 
   const getRankBadge = (percent: number) => {
-    if (percent >= 90) return { title: "Grok Master", color: "text-purple border-purple/20 bg-purple-950/10", icon: Sparkles };
+    if (percent >= 90) return { title: "Groq Master", color: "text-purple border-purple/20 bg-purple-950/10", icon: Sparkles };
     if (percent >= 70) return { title: "Proficient Expert", color: "text-emerald-450 border-emerald-500/20 bg-emerald-950/10", icon: Award };
     if (percent >= 50) return { title: "Competent Analyst", color: "text-amber-400 border-amber-500/20 bg-amber-950/10", icon: Star };
     return { title: "Apprentice Scholar", color: "text-rose-455 border-rose-500/10 bg-rose-950/10", icon: AlertCircle };

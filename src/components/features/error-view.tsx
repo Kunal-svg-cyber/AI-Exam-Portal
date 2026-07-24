@@ -85,7 +85,7 @@ export function ErrorView() {
   const errorConfigs = {
     'invalid-key': {
       title: 'Invalid API Key',
-      description: 'Your Grok API key was rejected by the xAI gateway. Please confirm that your credentials are correct and format is xai- prefixed.',
+      description: 'Your Groq API key was rejected by the Groq gateway. Please confirm that your credentials are correct and format is gsk_ prefixed.',
       icon: ShieldAlert,
       color: 'text-rose-400 border-rose-500/20 bg-rose-500/5',
       illustration: (
@@ -100,7 +100,7 @@ export function ErrorView() {
     },
     'expired-key': {
       title: 'Expired API Key',
-      description: 'The Grok console credentials provided have expired or are no longer active on the xAI portal. Check your account billing.',
+      description: 'The Groq console credentials provided have expired or are no longer active on the Groq portal. Check your account billing.',
       icon: Clock,
       color: 'text-orange-400 border-orange-500/20 bg-orange-500/5',
       illustration: (
@@ -128,7 +128,7 @@ export function ErrorView() {
     },
     'ai-timeout': {
       title: 'AI Generation Timeout',
-      description: 'The Grok model response exceeded our maximum processing time window. This can occur when xAI servers are heavily congested. Retrying usually succeeds.',
+      description: 'The Groq model response exceeded our maximum processing time window. This can occur when Groq servers are heavily congested. Retrying usually succeeds.',
       icon: Clock,
       color: 'text-amber-400 border-amber-500/20 bg-amber-500/5',
       illustration: (
@@ -155,8 +155,8 @@ export function ErrorView() {
       ),
     },
     'server-error': {
-      title: 'xAI Server Interruption',
-      description: 'Grok API returned a 50x server error. The service may be experiencing high load or temporary maintenance issues.',
+      title: 'Groq Server Interruption',
+      description: 'Groq API returned a 50x server error. The service may be experiencing high load or temporary maintenance issues.',
       icon: Server,
       color: 'text-rose-400 border-rose-500/20 bg-rose-500/5',
       illustration: (
@@ -172,7 +172,7 @@ export function ErrorView() {
     },
     'malformed-response': {
       title: 'Malformed AI Format',
-      description: 'Grok generated an assessment structure that could not be parsed or validated against internal structures. Retrying usually fixes this.',
+      description: 'Groq generated an assessment structure that could not be parsed or validated against internal structures. Retrying usually fixes this.',
       icon: FileQuestion,
       color: 'text-purple-400 border-purple-500/20 bg-purple-500/5',
       illustration: (
@@ -186,7 +186,7 @@ export function ErrorView() {
     },
     'empty-response': {
       title: 'Empty Response Returned',
-      description: 'The Grok API returned successfully but delivered an empty completion payload. Retrying may solve the generation block.',
+      description: 'The Groq API returned successfully but delivered an empty completion payload. Retrying may solve the generation block.',
       icon: FileQuestion,
       color: 'text-zinc-400 border-zinc-700/50 bg-zinc-800/10',
       illustration: (

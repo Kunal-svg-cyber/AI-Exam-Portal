@@ -159,7 +159,7 @@ export function GeneratorForm() {
           Assessment Generator Console
         </h2>
         <p className="text-xs text-zinc-500 mt-1">
-          Configure educational evaluation models. Inputs are parsed by Grok AI in real time.
+          Configure educational evaluation models. Inputs are parsed by Groq AI in real time.
         </p>
       </div>
 
@@ -368,7 +368,7 @@ export function GeneratorForm() {
             {/* Preview Sheet Footer */}
             <div className="border-t border-zinc-850 pt-4 flex items-center justify-between text-[10px] text-zinc-500">
               <span>Paper Size: A4 Portrait</span>
-              <span>Grok 2 structured validation engine</span>
+              <span>Groq structured validation engine</span>
             </div>
 
           </GlassCard>

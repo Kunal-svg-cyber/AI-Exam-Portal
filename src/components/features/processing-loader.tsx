@@ -72,7 +72,7 @@ export function ProcessingLoader() {
         <div className="space-y-1.5 flex-grow">
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-primary animate-ping" />
-            <span className="text-[10px] font-black text-primary uppercase tracking-widest">Grok generation pipeline</span>
+            <span className="text-[10px] font-black text-primary uppercase tracking-widest">Groq generation pipeline</span>
           </div>
           <div className="h-8 flex items-center">
             <AnimatePresence mode="wait">

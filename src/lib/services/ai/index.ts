@@ -23,7 +23,7 @@ export class AiService {
 
     // 2. Call API Client
     const response = await ApiClient.postChatCompletion(apiKey, {
-      model: "grok-2-1212",
+      model: "grok-4.5",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },

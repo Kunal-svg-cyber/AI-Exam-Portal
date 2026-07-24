@@ -44,7 +44,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function HomePage() {
   const { isKeyConnected, isHydrated } = useApiKey();
-  const { step, setStep } = useAssessment();
+  const { step, setStep, assessment, result } = useAssessment();
 
   // Landing Page View Component
   const renderLanding = () => {

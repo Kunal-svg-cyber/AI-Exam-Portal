@@ -1,3 +1,13 @@
+diff --git a/next-env.d.ts b/next-env.d.ts
+index b642bf0..40c3d68 100644
+--- a/next-env.d.ts
++++ b/next-env.d.ts
+@@ -2,4 +2,4 @@
+ /// <reference types="next/image-types/global" />
+ 
+ // NOTE: This file should not be edited
+-// See https://nextjs.org/docs/basic-features/typescript for more information.
++// see https://nextjs.org/docs/app/building-your-application/configuring/typescript for more information.
 diff --git a/src/app/providers.tsx b/src/app/providers.tsx
 index 215afa3..61d0aed 100644
 --- a/src/app/providers.tsx
@@ -256,3 +266,69 @@ index 6b1b531..b052b9b 100644
        >
          {isLoading && <Loader2 className="h-4 w-4 animate-spin text-current" />}
          {!isLoading && leftIcon && <span className="shrink-0">{leftIcon}</span>}
+diff --git a/src/lib/services/ai/error-handler.ts b/src/lib/services/ai/error-handler.ts
+index b134cee..ed09863 100644
+--- a/src/lib/services/ai/error-handler.ts
++++ b/src/lib/services/ai/error-handler.ts
+@@ -1,10 +1,37 @@
+ export class ErrorHandler {
+   static async handleApiError(response: Response): Promise<never> {
+     let detailMessage = "";
++    let rawText = "";
++
+     try {
+-      const errObj = await response.json();
+-      detailMessage = errObj.error?.message || response.statusText || "";
++      rawText = await response.text();
+     } catch (_) {
++      rawText = "";
++    }
++
++    if (rawText) {
++      try {
++        const errObj = JSON.parse(rawText);
++        // Try the common shapes providers use for error payloads
++        detailMessage =
++          errObj?.error?.message ||
++          (typeof errObj?.error === "string" ? errObj.error : "") ||
++          errObj?.message ||
++          errObj?.msg ||
++          errObj?.detail ||
++          "";
++      } catch (_) {
++        // Body wasn't JSON (e.g. plain text or HTML) — fall through to raw text below
++      }
++
++      // If we still don't have a message, surface the raw body itself (truncated)
++      // so the actual cause from xAI is visible instead of a generic status text.
++      if (!detailMessage) {
++        detailMessage = rawText.slice(0, 300);
++      }
++    }
++
++    if (!detailMessage) {
+       detailMessage = response.statusText || "";
+     }
+ 
+@@ -15,6 +42,8 @@ export class ErrorHandler {
+         throw new Error(`${prefix}: Unauthorized. Please check that your Grok API key is correct and valid.`);
+       case 402:
+         throw new Error(`${prefix}: Payment Required. Please review billing status on your xAI developer console.`);
++      case 404:
++        throw new Error(`${prefix}: Not Found. ${detailMessage || "The requested model or endpoint may not exist."}`);
+       case 429:
+         throw new Error(`${prefix}: Rate Limit Exceeded. You have made too many requests. Please wait before retrying.`);
+       case 500:
+diff --git a/src/lib/services/ai/index.ts b/src/lib/services/ai/index.ts
+index c2808b0..8febd2b 100644
+--- a/src/lib/services/ai/index.ts
++++ b/src/lib/services/ai/index.ts
+@@ -23,7 +23,7 @@ export class AiService {
+ 
+     // 2. Call API Client
+     const response = await ApiClient.postChatCompletion(apiKey, {
+-      model: "grok-2-1212",
++      model: "grok-4.5",
+       messages: [
+         { role: "system", content: systemPrompt },
+         { role: "user", content: userPrompt },

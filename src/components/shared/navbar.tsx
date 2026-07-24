@@ -19,7 +19,7 @@ export function Navbar() {
   const handleKeyAction = () => {
     if (isKeyConnected) {
       // Allow user to reset key
-      if (confirm('Do you want to disconnect your Grok API key?')) {
+      if (confirm('Do you want to disconnect your Groq API key?')) {
         setApiKey(null);
         resetAssessment();
         setStep('LANDING');

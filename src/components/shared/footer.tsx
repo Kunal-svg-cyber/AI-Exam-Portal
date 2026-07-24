@@ -39,7 +39,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-xs text-zinc-400 leading-relaxed max-w-xs">
-              Supporting SDG 4 by allowing students and educators to instantly generate high-quality assessment systems using secure, browser-session Grok key connections.
+              Supporting SDG 4 by allowing students and educators to instantly generate high-quality assessment systems using secure, browser-session Groq key connections.
             </p>
           </div>
 

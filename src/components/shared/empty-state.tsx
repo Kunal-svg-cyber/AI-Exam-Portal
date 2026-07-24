@@ -84,7 +84,7 @@ export function EmptyState({
       case 'no-key':
         return {
           title: title || 'Connection Required',
-          desc: description || 'You must connect your Grok API Key to access active test generation parameters.',
+          desc: description || 'You must connect your Groq API Key to access active test generation parameters.',
           btn: actionLabel || 'Connect API Key',
           icon: <Key className="h-4 w-4" />,
         };
@@ -105,7 +105,7 @@ export function EmptyState({
       case 'no-internet':
         return {
           title: title || 'Connection Interrupted',
-          desc: description || 'Could not contact xAI completions endpoints. Verify local internet connection parameters.',
+          desc: description || 'Could not contact Groq completions endpoints. Verify local internet connection parameters.',
           btn: actionLabel || 'Check Status',
           icon: <WifiOff className="h-4 w-4" />,
         };

@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Assessment, AssessmentResult } from '@/lib/types';
+import { GradedAssessmentResult } from '@/lib/evaluation-engine';
 import { GeneratorInput } from '@/lib/schemas';
 import { CheckCircle2, XCircle, Info, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -58,8 +59,8 @@ interface AssessmentContextType {
   setAssessment: (assessment: Assessment | null) => void;
   userAnswers: Record<string, string>;
   setUserAnswers: React.Dispatch<React.SetStateAction<Record<string, string>>>;
-  result: AssessmentResult | null;
-  setResult: (result: AssessmentResult | null) => void;
+  result: GradedAssessmentResult | null;
+  setResult: (result: GradedAssessmentResult | null) => void;
   errorDetails: ErrorDetails | null;
   setErrorDetails: (details: ErrorDetails | null) => void;
   resetAssessment: () => void;
@@ -114,10 +115,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [step, setStep] = useState<AppStep>('LANDING');
   const [assessment, setAssessment] = useState<Assessment | null>(null);
   const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
-  const [result, setResultState] = useState<AssessmentResult | null>(null);
+  const [result, setResultState] = useState<GradedAssessmentResult | null>(null);
   const [errorDetails, setErrorDetails] = useState<ErrorDetails | null>(null);
 
-  const setResult = (res: AssessmentResult | null) => {
+  const setResult = (res: GradedAssessmentResult | null) => {
     setResultState(res);
     if (res && assessment) {
       try {
